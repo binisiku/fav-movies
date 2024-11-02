@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Collection</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1>Movie Collection</h1>
+    
+    <form id="movieForm">
+        <label for="title">Movie Title:</label>
+        <input type="text" id="title" required>
+
+        <label for="director">Director:</label>
+        <input type="text" id="director" required>
+
+        <label for="year">Release Year:</label>
+        <input type="number" id="year" required>
+
+        <button type="submit">Add Movie</button>
+    </form>
+
+    <table id="movieTable">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Director</th>
+                <th>Year</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Movies will be added here -->
+        </tbody>
+    </table>
+
+    <script>
+        const movieForm = document.getElementById('movieForm');
+        const movieTableBody = document.getElementById('movieTable').getElementsByTagName('tbody')[0];
+
+        movieForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from submitting
+
+            const title = document.getElementById('title').value;
+            const director = document.getElementById('director').value;
+            const year = document.getElementById('year').value;
+
+            // Create a new row
+            const newRow = movieTableBody.insertRow();
+            const titleCell = newRow.insertCell(0);
+            const directorCell = newRow.insertCell(1);
+            const yearCell = newRow.insertCell(2);
+
+            // Add the movie data to the cells
+            titleCell.textContent = title;
+            directorCell.textContent = director;
+            yearCell.textContent = year;
+
+            // Clear the input fields
+            movieForm.reset();
+        });
+    </script>
+
+</body>
+</html>
